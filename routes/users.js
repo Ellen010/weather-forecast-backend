@@ -3,7 +3,7 @@ const router= express.Router();
 const User=require ('../models/users');
 const { checkBody }= require ("../models/checkBody");
 
-router.post("newMember", (req, res) => {
+router.post("/singup", (req, res) => {
     if (!checkBody(req.body,["name","email", "password"])) {
         res.json({result:false, error:"Name and login must be typed"});
         return;
@@ -37,22 +37,5 @@ router.post("/signin", (req, res) => {
                 }            
 });
 });
-router.post('/signup', (req, res) => {
-    User.findOne({ email: req.body.email }).then(data => {
-      if (data === null) {
-        const newUser = new User({
-          name: req.body.name,
-          email: req.body.email,
-          password: req.body.password,
-        });
-   
-        newUser.save().then(newDoc => {
-          res.json({ result: true });
-        });
-      } else {
-        res.json({ result: false, error: 'User already exists' });
-      }
-    });
-   });
 
 module.exports=router;
