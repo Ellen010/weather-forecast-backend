@@ -37,5 +37,22 @@ router.post("/signin", (req, res) => {
                 }            
 });
 });
+router.post('/signup', (req, res) => {
+    User.findOne({ email: req.body.email }).then(data => {
+      if (data === null) {
+        const newUser = new User({
+          name: req.body.name,
+          email: req.body.email,
+          password: req.body.password,
+        });
+   
+        newUser.save().then(newDoc => {
+          res.json({ result: true });
+        });
+      } else {
+        res.json({ result: false, error: 'User already exists' });
+      }
+    });
+   });
 
 module.exports=router;
