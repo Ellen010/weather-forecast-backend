@@ -24,5 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/weather', weatherRouter);
 app.use('/users', usersRouter);
-
+app.post('/users/signup', (req, res) => {  
+});
+app.post('/users/signin', (req, res) => {  
+});
 module.exports = app;
