@@ -24,8 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/weather', weatherRouter);
 app.use('/users', usersRouter);
-app.post('/users/signup', (req, res) => {  
+app.post("/users/signup", (req, res) => {
+    res.json({ result: true, message: "Signup successful!" });
 });
+app.listen(3000, () => console.log("Server running on port 3000"));
 app.post('/users/signin', (req, res) => {  
 });
 module.exports = app;
