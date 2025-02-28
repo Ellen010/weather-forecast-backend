@@ -3,7 +3,7 @@ const router= express.Router();
 const User=require ("../models/users");
 const { checkBody }= require ("../models/checkBody");
 
-router.post("/singup", (req, res) => {
+router.post("/signup", (req, res) => {
     if (!checkBody(req.body,["name","email", "password"])) {
         res.json({result:false, error:"Name and login must be typed"});
         return;
